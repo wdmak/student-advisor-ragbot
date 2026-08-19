@@ -1,0 +1,7 @@
+# Get a free key at https://aistudio.google.com/apikey
+GOOGLE_API_KEY= "your_api_key_here"
+
+# Optional: override the default Gemma 4 model
+# GEMMA_MODEL=gemma-4-26b-a4b-it
+
+#

@@ -1,0 +1,11 @@
+langgraph>=1.0.0
+langchain-core
+langchain-google-genai>=4.0.0
+langchain-community
+langchain-chroma
+langchain-text-splitters
+chromadb
+streamlit
+python-dotenv
+unstructured[md]
+docx2txt
