@@ -1,6 +1,7 @@
-venv/
 .env
 chroma_db/
+venv/
+.git
 __pycache__/
 *.pyc
 dev-logic/
