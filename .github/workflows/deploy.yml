@@ -1,0 +1,35 @@
+# Builds the app image on GitHub's free runner and publishes it to GHCR.
+# This exists because the student subscription blocks ACR Tasks (cloud
+# build), so the image must be built somewhere with Docker — GitHub
+# provides that. The Azure Container App then pulls this public image.
+name: Build and push image to GHCR
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # lets you re-run manually from the Actions tab
+
+permissions:
+  contents: read
+  packages: write # needed to push to ghcr.io
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository }}:latest
